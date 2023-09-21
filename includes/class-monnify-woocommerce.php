@@ -286,7 +286,6 @@ class WC_Monnify_Gateway extends WC_Payment_Gateway
                     'email'            => '',
                     'amount'           => '',
                     'txnref'           => '',
-                    'pay_page'         => $this->payment_page,
                     'currency'         => '',
                     'bank_channel'     => 'true',
                     'card_channel'     => 'true',
