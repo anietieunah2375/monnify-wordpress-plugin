@@ -209,6 +209,18 @@ class WC_Monnify_Gateway extends WC_Payment_Gateway
                     'default'     => '',
 
                 ),
+                'payment_methods' => array(
+                    'title'       => 'Supported Payment Methods',
+                    'type'        => 'multiselect',
+                    'description' => 'Select the payment methods you want to support.',
+                    'default'     => array('CARD', 'ACCOUNT_TRANSFER', 'USSD', 'PHONE_NUMBER'),
+                    'options'     => array(
+                        'CARD'            => 'Card',
+                        'ACCOUNT_TRANSFER' => 'Account Transfer',
+                        'USSD'            => 'USSD',
+                        'PHONE_NUMBER'    => 'Phone Number',
+                    ),
+                ),
             );
         }
 
@@ -278,6 +290,13 @@ class WC_Monnify_Gateway extends WC_Payment_Gateway
                 wp_enqueue_script('monnify', 'https://sdk.monnify.com/plugin/monnify.js', array('jquery'), WC_MONNIFY_VERSION, false);
                 wp_enqueue_script('wc_monnify', plugins_url('assets/js/monnify.js', WC_MONNIFY_MAIN_FILE), array('jquery', 'monnify'), WC_MONNIFY_VERSION, false);
 
+                $selected_payment_methods = $this->get_option('payment_methods', array(
+                    'CARD',
+                    'ACCOUNT_TRANSFER',
+                    'USSD',
+                    'PHONE_NUMBER',
+                ));
+            
                 $monnify_params = array(
                     'key'              => $this->monnify_api_key,
                     'contractCode'     => $this->monnify_contract,
@@ -286,13 +305,14 @@ class WC_Monnify_Gateway extends WC_Payment_Gateway
                     'email'            => '',
                     'amount'           => '',
                     'txnref'           => '',
-                    'currency'         => '',
-                    'bank_channel'     => 'true',
-                    'card_channel'     => 'true',
+                    'currency'         => '', 
+                    'bank_channel'      => in_array('ACCOUNT_TRANSFER', $selected_payment_methods),
+                    'card_channel'      => in_array('CARD', $selected_payment_methods),
+                    'ussd_channel'      => in_array('USSD', $selected_payment_methods),
+                    'phone_number_channel' => in_array('PHONE_NUMBER', $selected_payment_methods), 
                     'first_name'       => '',
                     'last_name'        => '',
-                    'phone'            => '',
-                    'card_channel'     => 'true',
+                    'phone'            => '', 
                 );
 
                 if (is_checkout_pay_page() && get_query_var('order-pay') && $order->get_id() === $order_id && $order->get_order_key() === sanitize_text_field(urldecode($_GET['key']))) {
