@@ -5,7 +5,7 @@ function payWithMonnify({
   customerMobileNumber,
   apiKey,
   contractCode,
-  selectedPaymentMethods,
+  paymentMethods,
   redirect_url,
   currency
 }) {
@@ -22,9 +22,10 @@ function payWithMonnify({
     apiKey,
     contractCode,
     paymentDescription: "Make Payment with Monnify",
-    paymentMethods: selectedPaymentMethods, // Use the selected payment methods here
+    paymentMethods, // Use the selected payment methods here
     onLoadStart: () => {
       //console.log("Sdk load started");
+      // console.log(woo_monnify_params)
     },
     onLoadComplete: () => {
      //console.log("SDK is UP");
@@ -77,7 +78,7 @@ jQuery(function ($) {
           customerMobileNumber,
           apiKey: key,
           contractCode,
-          selectedPaymentMethods,
+          paymentMethods: selectedPaymentMethods , // Use the selected payment methods here,
           redirect_url: mon_redirect_url,
           currency
         });

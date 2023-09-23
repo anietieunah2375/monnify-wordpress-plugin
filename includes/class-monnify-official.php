@@ -212,7 +212,7 @@ class WC_Monnify_Gateway extends WC_Payment_Gateway
                 'payment_methods' => array(
                     'title'       => 'Supported Payment Methods',
                     'type'        => 'multiselect',
-                    'description' => 'Select the payment methods you want to support.',
+                    'description' => 'Select the payment methods you want to support. Hold "SHIFT" to select multiple. Works only in Live Mode.',
                     'default'     => array('CARD', 'ACCOUNT_TRANSFER', 'USSD', 'PHONE_NUMBER'),
                     'options'     => array(
                         'CARD'            => 'Card',
@@ -298,6 +298,7 @@ class WC_Monnify_Gateway extends WC_Payment_Gateway
                 ));
             
                 $monnify_params = array(
+                    'selectedPaymentMethods' => $selected_payment_methods,
                     'key'              => $this->monnify_api_key,
                     'contractCode'     => $this->monnify_contract,
                     'monnify_test_mode'=> $this->monnify_test_mode,
