@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Monnify WooCommerce Payment Gateway
+ * Plugin Name: Monnify Official Wordpress Plugin
  * Plugin URI: https://monnify.com
- * Description: Monnify Woocommerce Payment Plugin allows you to integrate Monnify Payment to your WordPress Website. Supports various Monnify payment method options such as Pay with Transfer, Pay with Card, Pay with USSD, Pay with Phone Number.
+ * Description: Monnify Official Payment Plugin allows you to integrate Monnify Payment to your WordPress Website. Supports various Monnify payment method options such as Pay with Transfer, Pay with Card, Pay with USSD, Pay with Phone Number.
  * Author: Monnify Integrations Team
  * Author URI: https://monnify.com
  * Version: 1.0.1
- * Text Domain: monnify-woocommerce
+ * Text Domain: monnify-official
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
  */
@@ -48,7 +48,7 @@ function monnify_woocommerce_notice()
     if (  isset($plugin_config['testmode']) ? (($plugin_config['testmode'] === 'yes')? true: false) : false ) {
         echo '<div class="error"><p>' . 
         sprintf(__('Monnify Woocommerce is on Test mode, goto <strong> <a href="%s">Plugin Setting</a></strong> to
-            disable Test mode to start accepting live payment on your website.', 'monnify-woocommerce'), esc_url(
+            disable Test mode to start accepting live payment on your website.', 'monnify-official'), esc_url(
             admin_url('admin.php?page=wc-settings&tab=checkout&section=monnify')
         )) . '</p></div>';
     }
@@ -77,7 +77,7 @@ function woo_monnify_init_gateway_class()
 
     add_action('admin_init', 'monnify_validate_installed_woocommerce');
 
-    require_once dirname( __FILE__ ) . '/includes/class-monnify-woocommerce.php';
+    require_once dirname( __FILE__ ) . '/includes/class-monnify-official.php';
 
 
 }
@@ -87,8 +87,8 @@ add_action('plugins_loaded', 'woo_monnify_init_gateway_class');
 
 function monnify_add_links_to_plugin_page($links)
 {
-    $settings_link = '<a href="' . esc_url(get_admin_url(null, 'admin.php?page=wc-settings&tab=checkout&section=monnify')) . '">' . __('Settings', 'monnify-woocommerce') . '</a>';
-    $documentation_link = '<a href="https://developers.monnify.com" target="_blank">' . __('Documentation', 'monnify-woocommerce') . '</a>';
+    $settings_link = '<a href="' . esc_url(get_admin_url(null, 'admin.php?page=wc-settings&tab=checkout&section=monnify')) . '">' . __('Settings', 'monnify-official') . '</a>';
+    $documentation_link = '<a href="https://developers.monnify.com" target="_blank">' . __('Documentation', 'monnify-official') . '</a>';
     array_push($links, $settings_link, $documentation_link);
     return $links;
 }

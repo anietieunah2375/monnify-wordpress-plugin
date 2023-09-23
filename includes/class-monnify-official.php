@@ -74,8 +74,8 @@ class WC_Monnify_Gateway extends WC_Payment_Gateway
         {
             $this->id = 'monnify'; 
             $this->has_fields = true; // If you need a custom creditcard form, set it to true
-            $this->method_title =  __('Monnify Woocommerce Payment', 'monnify-woocommerce');
-            $this->method_description = sprintf(__('Monnify Woocommerce Payment Plugin allows you to integrate <a href="%s" target="_blank">Monnify Payments</a> to your WordPress Website. Supports various Monnify payment method options such as Pay with Transfer, Card, USSD, or Phone Number. <a href="%s" target="_blank">Click here to get your API keys</a>.', 'monnify-woocommerce'), __('https://monnify.com'), __('https://app.monnify.com/login')); // will be displayed on the options page
+            $this->method_title =  __('Monnify Woocommerce Payment', 'monnify-official');
+            $this->method_description = sprintf(__('Monnify Woocommerce Payment Plugin allows you to integrate <a href="%s" target="_blank">Monnify Payments</a> to your WordPress Website. Supports various Monnify payment method options such as Pay with Transfer, Card, USSD, or Phone Number. <a href="%s" target="_blank">Click here to get your API keys</a>.', 'monnify-official'), __('https://monnify.com'), __('https://app.monnify.com/login')); // will be displayed on the options page
 
             $this->supports = array(
                 'products',
@@ -330,9 +330,9 @@ class WC_Monnify_Gateway extends WC_Payment_Gateway
     {
         $order = wc_get_order($order_id);
 
-        echo '<div id="seye">' . __('Thank you for your order, please click the button below to pay with Monnify.', 'monnify-woocommerce') . '</div>';
+        echo '<div id="seye">' . __('Thank you for your order, please click the button below to pay with Monnify.', 'monnify-official') . '</div>';
 
-        echo '<div id="monnify_form"><form id="order_review" method="post" action="' . WC()->api_request_url('WC_Monnify_Gateway') . '"></form><button class="button alt" id="wc-monnify-gateway-button">' . __('Pay Now', 'monnify-woocommerce') . '</button>';
+        echo '<div id="monnify_form"><form id="order_review" method="post" action="' . WC()->api_request_url('WC_Monnify_Gateway') . '"></form><button class="button alt" id="wc-monnify-gateway-button">' . __('Pay Now', 'monnify-official') . '</button>';
  
     }
 
